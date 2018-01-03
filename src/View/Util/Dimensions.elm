@@ -1,4 +1,4 @@
-module Dimensions where
+module View.Util.Dimensions exposing (..)
 
 type alias WindowHeight = Int
 type alias WindowWidth = Int
