@@ -15,6 +15,8 @@ TODO
 - [x] Affichage simple de toutes les cartes du Jeu Uno
 - [x] Pouvoir cliquer sur le deck central pour saisir une carte
 - [x] Pouvoir poser une carte de son jeu sur le deck central
+- [x] Affichage des cartes UNO (avec la couleur et le symbol)
+- [ ] Meilleur affichage pour kickback et les JOKER (+4 & changement de couleur)
 - [ ] pouvoir afficher plusieurs cartes sur les Deck "Autre Joueur"
 - [ ] afficher le nombre de carte de chaque "Autre Joueur"
 
