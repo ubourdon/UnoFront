@@ -1,11 +1,11 @@
-module Domain.Card exposing (Card(..))
+module Domain.Card exposing (Card(..), CardColor(..), CardNumericValue(..))
 
-type Card = NumericCard Color Value |
-            PlusTwoCard Color |
-            StopCard Color |
-            KickBackCard Color |
+type Card = NumericCard CardColor CardNumericValue |
+            PlusTwoCard CardColor |
+            StopCard CardColor |
+            KickBackCard CardColor |
             PlusFourCard |
             ChangeColorCard
 
-type Color = Red | Yellow | Green | Blue
-type Value = Zero | One | Two | Three | Four | Five | Six | Seven | Height | Nine
+type CardColor = Red | Yellow | Green | Blue
+type CardNumericValue = Zero | One | Two | Three | Four | Five | Six | Seven | Eight | Nine

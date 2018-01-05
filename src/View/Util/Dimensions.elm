@@ -8,10 +8,13 @@ type alias DeckHeight = Int
 type alias DeckDimension = (DeckWidth, DeckHeight)
 
 gameDeckDimension : DeckDimension
-gameDeckDimension = (250, 130)
+gameDeckDimension = (265, 130)
 
 deckDimension : DeckDimension
 deckDimension = (90, 130)
+
+focusCardDimension : DeckDimension
+focusCardDimension = (108, 156)
 
 type alias TopPosition = Float
 type alias RightPosition = Float
