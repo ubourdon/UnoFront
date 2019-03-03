@@ -19,18 +19,22 @@ view model =
 viewCarpet model =
     div [ greenCarpetStyle ]
         [ div [ topLeft ]       [ ]
-        , div [ topCenter ]     [ otherPlayerHiddenFaceCard [] ]
+        , div [ topCenter, centerElemInBox ] [ otherPlayerHiddenFaceCard [] ]
         , div [ topRight ]      [ ]
-        , div [ middleLeft ]    [ otherPlayerHiddenFaceCard [] ]
+        , div [ middleLeft, centerElemInBox ]    [ otherPlayerHiddenFaceCard [] ]
 
-        , div [ middleCenter {-, css [ margin auto ]-} ]
+        , div [ middleCenter, centerElemInBox ]
               [ div [css [ displayFlex ] ] [ lastCardPlayedDeck model, packageCardsDeck model ] ]
 
-        , div [ middleRight ]
+        , div [ middleRight, centerElemInBox ]
               [ otherPlayerHiddenFaceCard [] ]
 
-        , div [ bottom ] [ playerDeck model ]
+        , div [ bottom, centerElemInBox ] [ playerDeck model ]
         ]
+
+centerElemInBox = css [ property "align-self" "center"
+                      , property "justify-self" "center"
+                      ]
 
 layoutStyle = css [ fontFamilies ["Helvetica"]
                   , property "display" "grid"
