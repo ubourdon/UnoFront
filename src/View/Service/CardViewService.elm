@@ -1,8 +1,8 @@
 module View.Service.CardViewService exposing (showCard)
 
 import Domain.Card exposing (Card(..), CardColor(..), CardNumericValue(..))
-import Html exposing (Html, text, div)
-import Html.Attributes exposing (style)
+import Html.Styled exposing (Html, div, text)
+import Html.Styled.Attributes exposing (style)
 import View.Util.Dimensions exposing (focusCardDimension)
 import String exposing (fromInt)
 

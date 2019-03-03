@@ -1,57 +1,62 @@
 module View.View exposing (..)
 
-import View.Util.Dimensions exposing (..)
-import Html exposing (..)
-import Html.Attributes exposing (style)
-import View.Model.Deck exposing (deck, gameDeck, topDeck, rightDeck, leftDeck, bottomDeck, hiddenFaceCard)
-import MetaDashboard exposing (score)
+import Html exposing (Html)
+import View.Model.Deck exposing (lastCardPlayedDeck, otherPlayerHiddenFaceCard, packageCardsDeck, playerDeck)
 import View.Model.Model exposing (Model)
-import Html.Events exposing (onClick)
 import Service.Message exposing (Action(..))
-import Domain.Card exposing (Card(..))
-import View.Service.CardViewService exposing (showCard)
-import String exposing (fromInt)
+import Html.Styled exposing (div, toUnstyled, nav, text, Attribute)
+import Html.Styled.Attributes exposing (css)
+import Css exposing (absolute, auto, backgroundColor, center, displayFlex, fontFamilies, height, hex, margin, overflow, padding, pct, position, property, px, relative, textAlign, width)
 
-greenCarpetStyle : WindowWidth -> WindowHeight -> List (Attribute msg)
-greenCarpetStyle w h =
-  [ style "width" ((fromInt w) ++ "px")
-  , style "height" ((fromInt (h - 40)) ++ "px")
-  , style "backgroundColor" "#097054"
-  ]
-
-headerStyle = [ style "height" "40px"
-              , style "backgroundColor" "#6599FF"
-              ]
-
-viewCarpet : Model -> Html Action
-viewCarpet model =
-  let (w, h) = (model.windowSize.width, model.windowSize.height)
-  in
-    div (greenCarpetStyle w h)
-        [ gameDeck model [lastCardPlayedDeck model, packageCardsDeck model]
-        , score
-        , topDeck w h
-        , rightDeck w h
-        , leftDeck w h
-        , bottomDeck model
-        ]
 
 view : Model -> Html Action
 view model =
-  div [style "font-family" "Helvetica"]
-    [ nav headerStyle [text "Hello, World! Ugo"]
+  (div [ layoutStyle ]
+    [ nav [ headerStyle ] [text "Hello, World! Ugo"]
     , viewCarpet model
-    ]
+    ] |> toUnstyled)
 
-lastCardPlayedDeck : Model -> Html Action
-lastCardPlayedDeck model =
-  let displayDeck = deck focusCardDimension []
-  in case model.lastCardPlayed of
-    Just card -> displayDeck [showCard card]
-    Nothing -> displayDeck []
+viewCarpet model =
+    div [ greenCarpetStyle ]
+        [ div [ topLeft ]       [ ]
+        , div [ topCenter ]     [ otherPlayerHiddenFaceCard [] ]
+        , div [ topRight ]      [ ]
+        , div [ middleLeft ]    [ otherPlayerHiddenFaceCard [] ]
 
-packageCardsDeck : Model -> Html Action
-packageCardsDeck model =
-  case model.cardPackage of
-    nextCard :: _ -> hiddenFaceCard focusCardDimension [onClick (PickCard nextCard), style "cursor" "pointer"]
-    [] -> deck focusCardDimension [] []
+        , div [ middleCenter {-, css [ margin auto ]-} ]
+              [ div [css [ displayFlex ] ] [ lastCardPlayedDeck model, packageCardsDeck model ] ]
+
+        , div [ middleRight ]
+              [ otherPlayerHiddenFaceCard [] ]
+
+        , div [ bottom ] [ playerDeck model ]
+        ]
+
+layoutStyle = css [ fontFamilies ["Helvetica"]
+                  , property "display" "grid"
+                  , property "grid-template-rows" "10% 1fr"
+                  , position absolute
+                  , height (pct 100)
+                  , width (pct 100)
+                  , textAlign center
+                  ]
+
+headerStyle = css [ backgroundColor <| hex "#6599FF"
+                  , property "grid-row" "1"
+                  ]
+
+
+
+greenCarpetStyle = css [ backgroundColor <| hex "#097054"
+                       , property "grid-row" "2"
+                       , property "display" "grid"
+                       , property "grid-template-rows" "30% 1fr 40%"
+                       ]
+
+topLeft = css [ property "grid-row" "1", property "grid-column" "1" ]
+topCenter = css [ property "grid-row" "1", property "grid-column" "2" ]
+topRight = css [ property "grid-row" "1", property "grid-column" "3" ]
+middleLeft = css [ property "grid-row" "2", property "grid-column" "1" ]
+middleCenter = css [ property "grid-row" "2", property "grid-column" "2" ]
+middleRight = css [ property "grid-row" "2", property "grid-column" "3" ]
+bottom = css [ property "grid-row" "3", property "grid-column" "1 / span 3" ]

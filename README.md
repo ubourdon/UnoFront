@@ -42,3 +42,12 @@ DONNER VIE AU JEU
 - [ ] implémenter le cas "Je joue avant mon tour... Mais je N'ai PAS le droit"
 - [ ] implémenter le cas "Je joue plusieurs carte d'un coup... Mais j'ai le droit"
 - [ ] implémenter le cas "Je joue plusieurs carte d'un coup... Mais je N'ai PAS le droit"
+
+## Links
+
+### CSS Grid layout
+
+https://www.alsacreations.com/tuto/lire/1771-css-grid-layout-en-production.html
+https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Grid_Layout
+https://css-tricks.com/snippets/css/complete-guide-grid/
+
