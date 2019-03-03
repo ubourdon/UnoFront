@@ -7,7 +7,6 @@ import Domain.Card exposing (Card(..))
 update : Action -> Model -> (Model, Cmd Action)
 update msg model =
     case msg of
-        GetWindowDimensions dim -> ( { model | windowSize = dim }, Cmd.none)
         PickCard card -> (pickCardUpdateModel card model, Cmd.none)
         PlayCard card -> (playCardUpdateModel card model, Cmd.none)
 
