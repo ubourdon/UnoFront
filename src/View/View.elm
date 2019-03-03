@@ -6,7 +6,7 @@ import View.Model.Model exposing (Model)
 import Service.Message exposing (Action(..))
 import Html.Styled exposing (div, toUnstyled, nav, text, Attribute)
 import Html.Styled.Attributes exposing (css)
-import Css exposing (absolute, auto, backgroundColor, center, displayFlex, fontFamilies, height, hex, margin, overflow, padding, pct, position, property, px, relative, textAlign, width)
+import Css exposing (ColorValue, absolute, auto, backgroundColor, center, color, displayFlex, fontFamilies, height, hex, margin, overflow, padding, pct, position, property, px, relative, textAlign, width)
 
 
 view : Model -> Html Action
@@ -18,9 +18,9 @@ view model =
 
 viewCarpet model =
     div [ greenCarpetStyle ]
-        [ div [ topLeft ]       [ ]
+        [ div [ topLeft ] [ ]
         , div [ topCenter, centerElemInBox ] [ otherPlayerHiddenFaceCard [] ]
-        , div [ topRight ]      [ ]
+        , div [ topRight ] [ ]
         , div [ middleLeft, centerElemInBox ]    [ otherPlayerHiddenFaceCard [] ]
 
         , div [ middleCenter, centerElemInBox ]
@@ -32,27 +32,21 @@ viewCarpet model =
         , div [ bottom, centerElemInBox ] [ playerDeck model ]
         ]
 
-centerElemInBox = css [ property "align-self" "center"
-                      , property "justify-self" "center"
-                      ]
-
 layoutStyle = css [ fontFamilies ["Helvetica"]
+                  , backgroundColor <| hex "#097054"
                   , property "display" "grid"
-                  , property "grid-template-rows" "10% 1fr"
+                  , property "grid-template-rows" "5% 1fr"
                   , position absolute
                   , height (pct 100)
                   , width (pct 100)
                   , textAlign center
                   ]
 
-headerStyle = css [ backgroundColor <| hex "#6599FF"
-                  , property "grid-row" "1"
-                  ]
+headerStyle = css [ property "grid-row" "1", color <| hex "#FFF" ]
 
 
 
-greenCarpetStyle = css [ backgroundColor <| hex "#097054"
-                       , property "grid-row" "2"
+greenCarpetStyle = css [ property "grid-row" "2"
                        , property "display" "grid"
                        , property "grid-template-rows" "30% 1fr 40%"
                        ]
@@ -64,3 +58,7 @@ middleLeft = css [ property "grid-row" "2", property "grid-column" "1" ]
 middleCenter = css [ property "grid-row" "2", property "grid-column" "2" ]
 middleRight = css [ property "grid-row" "2", property "grid-column" "3" ]
 bottom = css [ property "grid-row" "3", property "grid-column" "1 / span 3" ]
+
+centerElemInBox = css [ property "align-self" "center"
+                      , property "justify-self" "center"
+                      ]

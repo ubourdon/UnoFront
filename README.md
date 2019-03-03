@@ -26,7 +26,7 @@ DONNER VIE AU JEU
 - [ ] bouchonner l'api "PlayCard"
 - [ ] Utiliser l'api "PlayCard" et implémenter la gestion des résultats pour le cas nominal (une carte jouée, affichée au centre, retirée du deck du joueur)
 - [ ] Implémenter la pioche
-- [ ] Indiquer visuellement un déplacement des carte
+- [ ] Indiquer visuellement un déplacement des cartes
 - [ ] Indiquer clairement ce qu'il vient de se passer [Message Box] (ex: Bobby à jouer 2 ROUGE, John prend pioche 2 cartes)
 - [ ] Gérer l'ordre de jeu (visuellement) i.e indiquer à qui est-ce de jouer ?  OU PAS
 - [ ] implémenter le cas "STOP"
