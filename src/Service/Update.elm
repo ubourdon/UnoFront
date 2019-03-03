@@ -1,10 +1,10 @@
 module Service.Update exposing (update)
 
-import Service.Message exposing (Msg(..))
+import Service.Message exposing (Action(..))
 import View.Model.Model exposing (Model)
 import Domain.Card exposing (Card(..))
 
-update : Msg -> Model -> (Model, Cmd Msg)
+update : Action -> Model -> (Model, Cmd Action)
 update msg model =
     case msg of
         GetWindowDimensions dim -> ( { model | windowSize = dim }, Cmd.none)

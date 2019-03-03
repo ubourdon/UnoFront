@@ -1,20 +1,26 @@
-import Html exposing (program)
-import Window
-import Task
+module Main exposing (main)
+
 import View.View exposing (view)
-import Service.Message exposing (Msg(..))
+import Service.Message exposing (Action(..))
 import Service.Update exposing (update)
 import Domain.CardPackage exposing (fullCardPackage)
 import View.Model.Model exposing (Model, WindowDimensions)
+import Browser
 
 stubDim = Model (WindowDimensions 600 800) [] fullCardPackage Nothing
 
-initDim: Cmd Msg
-initDim = Task.perform GetWindowDimensions (Task.map (\size -> WindowDimensions size.height size.width) Window.size)
+--initDim: Cmd Action
+--initDim = Task.perform GetWindowDimensions (Task.map (\size -> WindowDimensions size.height size.width) )
 
-main = Html.program
-    { init = (stubDim, initDim)
+main = Browser.element
+    { init = init
     , view = view
     , update = update
-    , subscriptions = (\_ -> Window.resizes GetWindowDimensions)
+    , subscriptions = subscriptions
     }
+
+init : () -> (Model, Cmd Action )
+init _ = (stubDim, Cmd.none)
+
+subscriptions : Model -> Sub Action
+subscriptions _ = Sub.none

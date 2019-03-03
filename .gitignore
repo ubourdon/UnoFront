@@ -3,3 +3,6 @@ Main.html
 .idea/**
 elm.js
 index.html
+node_modules
+target
+yarn.lock

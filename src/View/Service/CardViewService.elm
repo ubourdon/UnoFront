@@ -4,6 +4,7 @@ import Domain.Card exposing (Card(..), CardColor(..), CardNumericValue(..))
 import Html exposing (Html, text, div)
 import Html.Attributes exposing (style)
 import View.Util.Dimensions exposing (focusCardDimension)
+import String exposing (fromInt)
 
 showCard : Card -> Html msg
 showCard card =
@@ -42,13 +43,12 @@ htmlCard color value =
   let (_, h) = focusCardDimension
       paddingText = 45
       cardHeight = h - 45
-  in div [style [ ("background-color", color)
-                , ("text-align", "center")
-                , ("padding-top", toString paddingText ++ "px")
-                , ("height", toString cardHeight ++ "px")
-                , ("border-radius", "10px")
-                , ("color", "white")
-                , ("font-size", "5em")
-                ]
+  in div [ style "background-color" color
+         , style "text-align" "center"
+         , style "padding-top" (fromInt paddingText ++ "px")
+         , style "height" (fromInt cardHeight ++ "px")
+         , style "border-radius" "10px"
+         , style "color" "white"
+         , style "font-size" "5em"
          ]
          [text value]

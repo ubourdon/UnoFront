@@ -7,11 +7,10 @@ import View.Util.Dimensions exposing (..)
 score : Html msg
 score = div [] [text "toto"]
 
-scoreStyle : WindowWidth -> WindowHeight -> Attribute msg
+scoreStyle : WindowWidth -> WindowHeight -> List (Attribute msg)
 scoreStyle w h =
-  style
-    [ ("position", "absolute")
+    [ style "position" "absolute"
   --  , (stringPosition vert_pos, (toString vert_value) ++ "px")
   --  , (stringPosition hor_pos, (toString hor_value) ++ "px")
-    , ("backgroundColor", "red")  -- temporary
+    , style "backgroundColor" "red"  -- temporary
     ]
